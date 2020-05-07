@@ -17,4 +17,4 @@
 *.iws
 
 # IntelliJ
-/out/
+/out/'.idea' 
