@@ -21,9 +21,6 @@ lib/**/*.jar
 *.iws
 
 # IntelliJ
-'lib' 
-'.idea' 
-'out'
 .idea
 lib
 out

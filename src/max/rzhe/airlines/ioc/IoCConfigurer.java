@@ -15,33 +15,39 @@ public class IoCConfigurer {
     private final static String action = "max.rzhe.airlines.web.Action";
     private final static String actionFactory = "max.rzhe.airlines.web.ActionFactory";
 
+    /*actions*/
     private final static String startPageAction = "max.rzhe.airlines.web.StartPageAction";
     private final static String loginAction = "max.rzhe.airlines.web.LoginAction";
     private final static String logoutAction = "max.rzhe.airlines.web.LogoutAction";
 
+    //user action classes
     private final static String userListAction = "max.rzhe.airlines.web.users.UserListAction";
     private final static String userEditAction = "max.rzhe.airlines.web.users.UserEditAction";
     private final static String userDeleteAction = "max.rzhe.airlines.web.users.UserDeleteAction";
 
+    //airport action classes
     private final static String airportListAction = "max.rzhe.airlines.web.airports.AirportListAction";
     private final static String airportEditAction = "max.rzhe.airlines.web.airports.AirportEditAction";
     private final static String airportDeleteAction = "max.rzhe.airlines.web.airports.AirportDeleteAction";
 
+    //crewman action classes
     private final static String crewManListAction = "max.rzhe.airlines.web.crewmen.CrewManListAction";
     private final static String crewManEditAction = "max.rzhe.airlines.web.crewmen.CrewManEditAction";
     private final static String crewManDeleteAction = "max.rzhe.airlines.web.crewmen.CrewManDeleteAction";
 
+    //flight action classes
     private final static String flightsListAction = "max.rzhe.airlines.web.flights.FlightsListAction";
     private final static String flightsEditAction = "max.rzhe.airlines.web.flights.FlightsEditAction";
     private final static String flightsDeleteAction = "max.rzhe.airlines.web.flights.FlightsDeleteAction";
 
+    //crewman vs flight action classes
     private final static String crewManVsFlightListAction = "max.rzhe.airlines.web.crew.CrewManVsFlightListAction";
     private final static String crewManVsFlightEditAction = "max.rzhe.airlines.web.crew.CrewManVsFlightEditAction";
     private final static String crewManVsFlightDeleteAction = "max.rzhe.airlines.web.crew.CrewManVsFlightDeleteAction";
 
+    /*dao interfaces and implementations*/
     private final static String airportDao = "max.rzhe.airlines.dao.AirportDao";
     private final static String airportDaoImpl = "max.rzhe.airlines.dao.daoImpl.AirportDaoImpl";
-
     private final static String userDao = "max.rzhe.airlines.dao.UserDao";
     private final static String userDaoImpl = "max.rzhe.airlines.dao.daoImpl.UserDaoImpl";
     private final static String userTypeDao = "max.rzhe.airlines.dao.UserTypeDao";
@@ -55,7 +61,7 @@ public class IoCConfigurer {
     private final static String crewManVsFlightDao = "max.rzhe.airlines.dao.CrewManVsFlightDao";
     private final static String crewManVsFlightDaoImpl = "max.rzhe.airlines.dao.daoImpl.CrewManVsFlightDaoImpl";
 
-
+    /*service interfaces and implementations*/
     private final static String airportService = "max.rzhe.airlines.service.AirportService";
     private final static String airportServiceImpl = "max.rzhe.airlines.service.serviceImpl.AirportServiceImpl";
     private final static String userService = "max.rzhe.airlines.service.UserService";
@@ -89,10 +95,6 @@ public class IoCConfigurer {
     private final static String[] professionDaoInjection = pair(professionDao, "setRepository");
     private final static String[] flightDaoInjection = pair(flightDao, "setRepository");
     private final static String[] crewManVsFlightDaoInjection = pair(crewManVsFlightDao, "setRepository");
-
-
-
-
 
     public static void configure() throws IoCException {
         /* registration of actions */
