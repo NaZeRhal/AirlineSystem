@@ -1,0 +1,99 @@
+login.title=User Authorization
+login.form.login=Login
+login.form.password=Password
+login.button.login=Sigh in
+login.message.unknown.login = There is no user with this login
+login.message.incorrect.password = Password entered incorrectly
+
+application.operation.success=Operation completed successfully
+application.operation.error=Operation error
+
+header.hello=Hello
+
+button.confirm=Confirm
+button.back=Back
+button.add=Add
+button.edit=Edit
+button.viewCrew=View crew
+button.addCrew=Add crew
+button.removeCrew=Remove
+
+user.list.title=LIST OF USERS
+user.edit.title=EDIT USERS
+user.add.title=ADD USERS
+
+user.list.search=Searching for a user by last name ...
+user.table.name=Name
+user.table.surname=Last Name
+user.table.login=Login
+user.table.password=Password
+user.table.userType=User Type
+
+flights.list.title=FLIGHT LIST
+flights.edit.title=EDIT FLIGHT
+flights.add.title=ADD FLIGHT
+
+flights.flight.current=Actual
+flights.flight.canceled=Canceled
+flights.flight.completed=Completed
+flights.flight.unregistered=Unregistered
+flights.flight.all=All flights
+flights.list.airports=List of airports
+flights.list.crewman=Employee List
+flights.list.search=Searching for a flight by code ...
+
+flights.table.code=Flight Code
+flights.table.departureAirport=Departure
+flights.table.arrivalAirport=Arrivals
+flights.table.departureTime=Departure Time
+flights.table.arrivalTime=Arrival Time
+flights.table.flightStatus=Status
+
+flights.add.operation.airport.error=Arrival airport and departureAirport airport must be different
+flights.add.datetime.parse.error=Incorrect date and time entered
+flights.add.datetime.departureAirport.incorrect = Departure date cannot be earlier than the current
+flights.add.datetime.arrivalAirport.incorrect = Arrival time cannot be earlier than departureAirport time
+
+crewman.list.title=LIST OF EMPLOYEES
+crewman.edit.title=EDIT WORKER
+crewman.add.title=ADD EMPLOYEE
+
+crewman.table.name=Name
+crewman.table.surname=Last Name
+crewman.table.dateOfBirth=Date of Birth
+crewman.table.profession=Profession
+
+crewman.list.fullList=Full list
+crewman.list.pilots=Pilots
+crewman.list.navigators=Navigators
+crewman.list.radiomen=Radio Operators
+crewman.list.stewards=Stewards
+crewman.list.flightsList=Flight List
+crewman.list.search=Searching for an employee by last name ...
+
+crewman.edit.date.parse.error=Incorrect date entered
+crewman.edit.date.incorrect=Date cannot be later than the current
+
+airports.list.title=LIST OF AIRPORTS
+airports.edit.title=EDIT AIRPORT
+airports.add.title=ADD AIRPORT
+
+airports.table.city=City
+airports.table.code=Airport Code
+airports.list.flightsList=Flight List
+
+crew.view.title=CREW ON FLIGHT
+crew.add.title=EDITING CREW OF FLIGHT
+
+crew.table.name=Name
+crew.table.surname=Last Name
+crew.table.dateOfBirth=Date of birth
+crew.table.profession=Profession
+
+crew.table.pilot.enough = Pilots are enough for the crew
+crew.table.navigators.enough = Navigators are already enough for the crew
+crew.table.radioman.enough = Radio operators are enough for the crew
+crew.table.steward.enough = Stewards are enough for the crew
+crew.table.crewOnBoard.enough = The crew is already equipped
+crew.table.crewOnBoard.notEnough = Crew not fully staffed
+crew.table.pilot.not Enough = There must be a pilot on the flight
