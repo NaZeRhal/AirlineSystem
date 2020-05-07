@@ -1,6 +1,6 @@
-### This is the task for JAVA WEB-APPLICATIONS DEVELOPMENT training by EPAM
+### The task for JAVA WEB-APPLICATIONS DEVELOPMENT training by EPAM
 ## **`Airline system`**  
-The airline company has a list of flights. The dispatcher forms a flight crew (pilots, navigator, radio operator, stewards) for the flight. The administrator manages the list of flights.
+#### The airline company has a list of flights. The dispatcher forms a flight crew (pilots, navigator, radio operator, stewards) for the flight. The administrator manages the list of flights.
 
 ### **`Task 1`**
   
@@ -16,7 +16,7 @@ The airline company has a list of flights. The dispatcher forms a flight crew (p
 9 The code must contain comments.  
 
 ### **`Task 2`**  
-Build a web system (for the subject area in accordance with the task 1 option) that supports the specified functionality:  
+> Build a web system (for the subject area in accordance with the task 1 option) that supports the specified functionality:  
 **`1`** The application interface must support Cyrillic alphabet(being multilingual).  
 **`2`** Application architecture must conform to the Model-View-Controller pattern.  
 **`3`** Use GoF templates (Factory Method, Command, Builder, Strategy, State, Observer etc.) when implementing business logic algorithms.  
@@ -26,11 +26,11 @@ Build a web system (for the subject area in accordance with the task 1 option) t
 **`7`** The code must contain comments.
 
 ## **`Система Авиакомпания`**  
-Авиакомпания имеет список рейсов. Диспетчер формирует лётную Бригаду (пилоты, штурман, радист, стюардессы) на Рейс.
+#### Авиакомпания имеет список рейсов. Диспетчер формирует лётную Бригаду (пилоты, штурман, радист, стюардессы) на Рейс.
 Администратор управляет списком рейсов.
 
 ### **`Task 1`**  
-Разработать подсистему для работы с базой данных предложенной предметной области:  
+> Разработать подсистему для работы с базой данных предложенной предметной области:  
 **`1`** Разработать схему базы данных в соответствии с предметной областью.  
 **`2`** Создать sql-скрипты создания БД, пользователя БД, создание таблиц, заполнение таблиц, удаление данных, удаление таблиц, удаление БД, обновление данных, запросы на выборку данных.  
 **`3`** Информацию о предметной области хранить в БД, для доступа использовать API JDBC с использованием пула соединений, разработанного самостоятельно. В качестве СУБД используется MySQL.  
@@ -42,7 +42,7 @@ Build a web system (for the subject area in accordance with the task 1 option) t
 **`9`** Код должен содержать комментарии.
 
 ### **`Task 2`**  
-Построить веб-систему (для предметной области в соответствии с вариантом task 1), поддерживающую заданную функциональность:  
+> Построить веб-систему (для предметной области в соответствии с вариантом task 1), поддерживающую заданную функциональность:  
 **`1`** Интерфейс приложения должен поддерживать работу с кириллицей (быть многоязычной).  
 **`2`** Архитектура приложения должна соответствовать шаблону Model-View-Controller.  
 **`3`** При реализации алгоритмов бизнес-логики использовать шаблоны GoF: Factory Method, Command, Builder, Strategy, State, Observer etc.  
