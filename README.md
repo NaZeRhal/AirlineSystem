@@ -2,18 +2,19 @@
 **`Airline system.`**  
 The airline company has a list of flights. The dispatcher forms a flight crew (pilots, navigator, radio operator, stewards) for the flight. The administrator manages the list of flights.
 
-**`Task 1`**  
+**`Task 1`**
+````  
 Develop a subsystem for working with the database of the proposed subject area:  
-**`1`** Design a database schema in accordance with the subject area.  
-**`2`** Create sql-scripts for creating a database, a database user, creating tables, filling in tables, deleting data, deleting tables, deleting a database, updating data, querying data.  
-**`3`** Store information about the subject area in the database. Use the JDBC API for access with a connection pool developed independently. MySQL is used as a DBMS.  
-**`4`** Create classes describing the entities of the subject area.  
-**`5`** Classes and methods must have names reflecting their functionality and must be competently structured by packages.  
-**`6`** Code design must comply with the Java Code Convention.  
-**`7`** The application must support the Cyrillic alphabet (being multilingual), including when storing information in the database.  
-**`8`** Log events, that is, process information about exceptions and events that occur in the system using Log4j 2.  
-**`9`** The code must contain comments.  
-
+1 Design a database schema in accordance with the subject area.  
+2 Create sql-scripts for creating a database, a database user, creating tables, filling in tables, deleting data, deleting tables, deleting a database, updating data, querying data.  
+3 Store information about the subject area in the database. Use the JDBC API for access with a connection pool developed independently. MySQL is used as a DBMS.  
+4 Create classes describing the entities of the subject area.  
+5 Classes and methods must have names reflecting their functionality and must be competently structured by packages.  
+6 Code design must comply with the Java Code Convention.  
+7 The application must support the Cyrillic alphabet (being multilingual), including when storing information in the database.  
+8 Log events, that is, process information about exceptions and events that occur in the system using Log4j 2.  
+9 The code must contain comments.  
+````
 **`Task 2`**  
 Build a web system (for the subject area in accordance with the task 1 option) that supports the specified functionality:  
 **`1`** The application interface must support Cyrillic alphabet(being multilingual).  
