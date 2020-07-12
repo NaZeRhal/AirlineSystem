@@ -1,9 +1,11 @@
 package max.rzhe.airlines.web;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.ioc.IoCConfigurer;
 import max.rzhe.airlines.ioc.IoCException;
 import max.rzhe.airlines.util.connectionpool.ConnectionPool;
 import max.rzhe.airlines.util.connectionpool.PoolException;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -14,7 +16,8 @@ import java.util.Properties;
 
 
 public class ApplicationStartListener implements ServletContextListener {
-
+    private static Logger logger =
+            (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(ApplicationStartListener.class);
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
@@ -33,6 +36,7 @@ public class ApplicationStartListener implements ServletContextListener {
 
             ConnectionPool.getInstance().init(jdbcDriver, jdbcUrl, jdbcUser, jdbcPassword, poolMinSize, poolMaxSize, poolConnectionValidationTimeout);
         } catch (PoolException | IoCException | NumberFormatException | IOException e) {
+            logger.error("Connection failed. Caused by: {}", e.toString());
             e.printStackTrace(System.out);
         }
     }

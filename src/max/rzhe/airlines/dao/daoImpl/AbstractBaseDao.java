@@ -1,8 +1,8 @@
 package max.rzhe.airlines.dao.daoImpl;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.dao.DaoException;
 import max.rzhe.airlines.entity.Entity;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public abstract class AbstractBaseDao<T extends Entity, PK extends Serializable> {
-    private static Logger logger = LoggerFactory.getLogger(max.rzhe.airlines.dao.daoImpl.AbstractBaseDao.class.getName());
+    private static Logger logger =
+            (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(AbstractBaseDao.class.getName());
     private Connection connection;
 
     protected Connection getConnection() {
