@@ -78,8 +78,8 @@ public class User extends Entity<Long> {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", userType=" + userType +
+//                ", password='" + password + '\'' +
+                ", userType=" + userType.getName() +
                 '}';
     }
 }

@@ -54,7 +54,6 @@ CREATE TABLE IF NOT EXISTS `new-airlines`.`crew_man` (
     FOREIGN KEY (`profession_id`)
     REFERENCES `new-airlines`.`professions` (`id`)
     ON UPDATE CASCADE)
-ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -75,13 +74,12 @@ CREATE TABLE IF NOT EXISTS `new-airlines`.`flights` (
   INDEX `FK_Flight_Flight_Statuses_idx` (`flight_status` ASC) VISIBLE,
   CONSTRAINT `Flight_to_Arrival_Airport`
     FOREIGN KEY (`arrival_airport_id`)
-    REFERENCES `new-airlines`.`airport` (`id`)
+    REFERENCES airport (`id`)
     ON UPDATE CASCADE,
   CONSTRAINT `Flight_to_Departure_Airport`
     FOREIGN KEY (`departure_airport_id`)
-    REFERENCES `new-airlines`.`airport` (`id`)
+    REFERENCES airport (`id`)
     ON UPDATE CASCADE)
-ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 

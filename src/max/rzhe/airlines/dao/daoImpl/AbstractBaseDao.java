@@ -2,6 +2,8 @@ package max.rzhe.airlines.dao.daoImpl;
 
 import max.rzhe.airlines.dao.DaoException;
 import max.rzhe.airlines.entity.Entity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.sql.*;
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public abstract class AbstractBaseDao<T extends Entity, PK extends Serializable> {
+    private static Logger logger = LoggerFactory.getLogger(max.rzhe.airlines.dao.daoImpl.AbstractBaseDao.class.getName());
     private Connection connection;
 
     protected Connection getConnection() {
@@ -57,6 +60,8 @@ public abstract class AbstractBaseDao<T extends Entity, PK extends Serializable>
                 } else {
                     throw new DaoException("No id is returned");
                 }
+                entity.setId(id);
+                logger.info(entity.getClass().getSimpleName() + " is created and saved in database: {}", entity.toString());
                 return id;
             } catch (SQLException e) {
                 throw new DaoException("Error in ResultSet while creating entity", e);
@@ -70,6 +75,7 @@ public abstract class AbstractBaseDao<T extends Entity, PK extends Serializable>
         try (PreparedStatement statement = getConnection().prepareStatement(getUpdateQuery())) {
             setParameters(statement, getParametersForUpdate(entity));
             int count = statement.executeUpdate();
+            logger.info(entity.getClass().getSimpleName() + " was updated: {}", entity.toString());
             if (count != 1) {
                 if (count == 0) {
                     create(entity);
