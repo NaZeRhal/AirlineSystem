@@ -1,18 +1,21 @@
 package max.rzhe.airlines.web.airports;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.entity.Airport;
+import max.rzhe.airlines.entity.User;
 import max.rzhe.airlines.service.AirportService;
 import max.rzhe.airlines.service.exception.ServiceException;
 import max.rzhe.airlines.web.Action;
 import max.rzhe.airlines.web.ActionResult;
 import max.rzhe.airlines.web.BaseAction;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class AirportEditAction extends BaseAction<Airport, AirportService> implements Action {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(AirportEditAction.class);
     private AirportService airportService;
 
     public void setAirportService(AirportService airportService) {
@@ -21,6 +24,7 @@ public class AirportEditAction extends BaseAction<Airport, AirportService> imple
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long id = parseId(request, "airportId");
 
         if ("GET".equals(request.getMethod())) {
@@ -46,10 +50,12 @@ public class AirportEditAction extends BaseAction<Airport, AirportService> imple
                     airport.setAirportCode(airportCode);
                     if (id == null) {
                         airportService.add(airport);
+                        logger.info("New {} was added by '{}'", airport, currentUser.getLogin());
                         return new ActionResult(request.getServletPath() +
                                 "?goodMessage=application.operation.success");
                     } else {
                         airportService.edit(airport);
+                        logger.info("{} was edited by '{}'", airport, currentUser.getLogin());
                         request.setAttribute("airport", airport);
                         return new ActionResult(String.format(request.getServletPath() +
                                 "?airportId=%d&goodMessage=application.operation.success", airport.getId()));

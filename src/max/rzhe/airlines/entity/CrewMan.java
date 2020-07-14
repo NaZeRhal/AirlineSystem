@@ -1,9 +1,6 @@
 package max.rzhe.airlines.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class CrewMan extends Entity<Long> {
     private String firstName;
@@ -68,11 +65,10 @@ public class CrewMan extends Entity<Long> {
     @Override
     public String toString() {
         return "CrewMan{" +
-                "id='" + this.getId() + '\'' +
-                ",firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", profession=" + profession +
+                ", profession=" + profession.getName() +
                 '}';
     }
 }

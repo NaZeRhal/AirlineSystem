@@ -1,7 +1,6 @@
 package max.rzhe.airlines.entity;
 
 import java.time.LocalDateTime;
-import java.util.*;
 
 public class Flight extends Entity<Long> {
     private String flightCode;
@@ -88,13 +87,12 @@ public class Flight extends Entity<Long> {
     @Override
     public String toString() {
         return "Flight{" +
-                "id='" + this.getId() + '\'' +
                 ", flightCode='" + flightCode + '\'' +
-                ", departureAirport=" + departureAirport +
-                ", arrivalAirport=" + arrivalAirport +
+                ", departureAirport=" + departureAirport.getCity() + " " + departureAirport.getAirportCode() +
+                ", arrivalAirport=" + arrivalAirport.getCity() + " " + arrivalAirport.getAirportCode() +
                 ", departureTime=" + departureTime +
                 ", arrivalTime=" + arrivalTime +
-                ", statusId=" + flightStatus +
+                ", statusId=" + flightStatus.getName() +
                 '}';
     }
 }

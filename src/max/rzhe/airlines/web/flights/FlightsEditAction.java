@@ -1,14 +1,17 @@
 package max.rzhe.airlines.web.flights;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.entity.Airport;
 import max.rzhe.airlines.entity.Flight;
 import max.rzhe.airlines.entity.FlightStatus;
+import max.rzhe.airlines.entity.User;
 import max.rzhe.airlines.service.AirportService;
 import max.rzhe.airlines.service.FlightService;
 import max.rzhe.airlines.service.exception.ServiceException;
 import max.rzhe.airlines.web.Action;
 import max.rzhe.airlines.web.ActionResult;
 import max.rzhe.airlines.web.BaseAction;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FlightsEditAction extends BaseAction<Flight, FlightService> implements Action {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(FlightsEditAction.class);
     private FlightService flightService;
     private AirportService airportService;
 
@@ -33,6 +37,7 @@ public class FlightsEditAction extends BaseAction<Flight, FlightService> impleme
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long id = parseId(request, "flightId");
 
         if ("GET".equals(request.getMethod())) {
@@ -96,10 +101,12 @@ public class FlightsEditAction extends BaseAction<Flight, FlightService> impleme
                 flight.setFlightStatus(FlightStatus.valueOf(status));
                 if (id == null) {
                     flightService.add(flight);
+                    logger.info("New {} was added by '{}'", flight, currentUser.getLogin());
                     return new ActionResult(request.getServletPath() +
                             "?goodMessage=application.operation.success");
                 } else {
                     flightService.edit(flight);
+                    logger.info("{} was edited by '{}'", flight, currentUser.getLogin());
                     return new ActionResult(String.format(request.getServletPath() +
                             "?flightId=%d&goodMessage=application.operation.success", flight.getId()));
                 }

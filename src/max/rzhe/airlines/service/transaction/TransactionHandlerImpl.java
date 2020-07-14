@@ -1,12 +1,15 @@
 package max.rzhe.airlines.service.transaction;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.service.exception.ServiceException;
 import max.rzhe.airlines.service.exception.TransactionException;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class TransactionHandlerImpl implements TransactionHandler {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(TransactionHandlerImpl.class);
     private Connection connection;
 
     private Connection getConnection() {
@@ -36,6 +39,7 @@ public class TransactionHandlerImpl implements TransactionHandler {
         try {
             getConnection().setAutoCommit(false);
         } catch (SQLException e) {
+            logger.error("Error while starting transaction. Caused by: {}", e.getMessage());
             throw new TransactionException(e);
         }
     }
@@ -45,6 +49,7 @@ public class TransactionHandlerImpl implements TransactionHandler {
             getConnection().commit();
             getConnection().setAutoCommit(true);
         } catch (SQLException e) {
+            logger.error("Error during transaction commitment. Caused by: {}", e.getMessage());
             throw new TransactionException(e);
         }
     }
@@ -54,6 +59,7 @@ public class TransactionHandlerImpl implements TransactionHandler {
             getConnection().rollback();
             getConnection().setAutoCommit(true);
         } catch (SQLException e) {
+            logger.error("Error while rolling back transaction. Caused by: {}", e.getMessage());
             throw new TransactionException(e);
         }
     }

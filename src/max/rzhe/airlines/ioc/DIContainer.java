@@ -1,11 +1,15 @@
 package max.rzhe.airlines.ioc;
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 class DIContainer {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(DIContainer.class);
     private static Map<Class<?>, Map<Class<?>, Method>> dependencyInjectionMap = new HashMap<>();
 
     private IoCContainer ioCContainer;
@@ -25,6 +29,8 @@ class DIContainer {
                     injector.invoke(object, ioCContainer.get(dependency));
                 }
             } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+                logger.error("Error in DIContainer during dependencies injection. Caused by: {}",
+                        e.getMessage());
                 throw new IoCException(e);
             }
         }
@@ -42,6 +48,8 @@ class DIContainer {
                 actualDependencies.put(dependency, injector);
             }
         } catch (ClassNotFoundException | NoSuchMethodException e) {
+            logger.error("Error in DIContainer during creating dependencies injection map. Caused by: {}",
+                    e.getMessage());
             throw new IoCException(e);
         }
     }

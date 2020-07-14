@@ -41,8 +41,7 @@ public class Airport extends Entity<Long> {
     @Override
     public String toString() {
         return "Airport{" +
-                "id='" + this.getId() + '\'' +
-                ", city='" + city + '\'' +
+                "city='" + city + '\'' +
                 ", airportCode='" + airportCode + '\'' +
                 '}';
     }

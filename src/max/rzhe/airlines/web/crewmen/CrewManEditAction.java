@@ -1,13 +1,16 @@
 package max.rzhe.airlines.web.crewmen;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.entity.CrewMan;
 import max.rzhe.airlines.entity.Profession;
+import max.rzhe.airlines.entity.User;
 import max.rzhe.airlines.service.CrewManService;
 import max.rzhe.airlines.service.ProfessionService;
 import max.rzhe.airlines.service.exception.ServiceException;
 import max.rzhe.airlines.web.Action;
 import max.rzhe.airlines.web.ActionResult;
 import max.rzhe.airlines.web.BaseAction;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CrewManEditAction extends BaseAction<CrewMan, CrewManService> implements Action {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(CrewManEditAction.class);
     private CrewManService crewManService;
     private ProfessionService professionService;
 
@@ -31,6 +35,7 @@ public class CrewManEditAction extends BaseAction<CrewMan, CrewManService> imple
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long crewManId = parseId(request, "crewManId");
 
         if ("GET".equals(request.getMethod())) {
@@ -91,10 +96,12 @@ public class CrewManEditAction extends BaseAction<CrewMan, CrewManService> imple
                     crewMan.setProfession(profession);
                     if (crewManId == null) {
                         crewManService.add(crewMan);
+                        logger.info("New {} was added by '{}'", crewMan, currentUser.getLogin());
                         return new ActionResult(request.getServletPath() +
                                 "?goodMessage=application.operation.success");
                     } else {
                         crewManService.edit(crewMan);
+                        logger.info("{} was edited by '{}'", crewMan, currentUser.getLogin());
                         return new ActionResult(String.format(request.getServletPath() +
                                 "?crewManId=%d&goodMessage=application.operation.success", crewMan.getId()));
                     }

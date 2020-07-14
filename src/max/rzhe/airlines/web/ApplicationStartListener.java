@@ -16,8 +16,7 @@ import java.util.Properties;
 
 
 public class ApplicationStartListener implements ServletContextListener {
-    private static Logger logger =
-            (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(ApplicationStartListener.class);
+    private static Logger logger = (Logger) LoggerFactory.getLogger(ApplicationStartListener.class);
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {

@@ -1,5 +1,6 @@
 package max.rzhe.airlines.web.users;
 
+import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.entity.User;
 import max.rzhe.airlines.entity.UserType;
 import max.rzhe.airlines.service.UserService;
@@ -8,6 +9,7 @@ import max.rzhe.airlines.service.exception.ServiceException;
 import max.rzhe.airlines.web.Action;
 import max.rzhe.airlines.web.ActionResult;
 import max.rzhe.airlines.web.BaseAction;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserEditAction extends BaseAction<User, UserService> implements Action {
+    private static Logger logger = (Logger) LoggerFactory.getLogger(UserEditAction.class);
     private UserService userService;
     private UserTypeService userTypeService;
 
@@ -29,6 +32,7 @@ public class UserEditAction extends BaseAction<User, UserService> implements Act
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
         Long id = parseId(request, "userId");
 
         if ("GET".equals(request.getMethod())) {
@@ -76,10 +80,12 @@ public class UserEditAction extends BaseAction<User, UserService> implements Act
                         user.setUserType(userType);
                         if (id == null) {
                             userService.add(user);
+                            logger.info("New {} was added by '{}'", user, currentUser.getLogin());
                             return new ActionResult(request.getServletPath() +
                                     "?goodMessage=application.operation.success");
                         } else {
                             userService.edit(user);
+                            logger.info("{} was edited by '{}'", user, currentUser.getLogin());
                             request.setAttribute("user", user);
                             return new ActionResult(String.format(request.getServletPath() +
                                     "?userId=%d&goodMessage=application.operation.success", user.getId()));

@@ -9,7 +9,6 @@ import max.rzhe.airlines.web.BaseAction;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class UserDeleteAction extends BaseAction<User, UserService> implements Action {
     private UserService userService;
