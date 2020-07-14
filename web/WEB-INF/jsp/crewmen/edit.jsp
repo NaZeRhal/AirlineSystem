@@ -11,7 +11,7 @@
 
 <c:if test="${empty requestScope.crewman.profession}">
     <fmt:message var="title" key="crewman.add.title"/>
-    <c:set var="hidden" value="hidden"/>
+    <c:set var="addHidden" value="hidden"/>
 </c:if>
 <c:if test="${!empty requestScope.crewman.profession}">
     <fmt:message var="title" key="crewman.edit.title"/>
@@ -36,7 +36,7 @@
                     <th><fmt:message key="crewman.table.surname"/></th>
                     <th><fmt:message key="crewman.table.dateOfBirth"/></th>
                     <th><fmt:message key="crewman.table.profession"/></th>
-                    <th ${hidden}></th>
+                    <th ${addHidden}></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@
                         </c:forEach>
                     </select></td>
                     <c:url var="deleteUrl" value="/crewmen/delete.html?language=${language}"/>
-                    <td ${hidden}>
+                    <td ${addHidden}>
                         <button class="deleteButton" formaction="${deleteUrl}" title="" formmethod="post">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>

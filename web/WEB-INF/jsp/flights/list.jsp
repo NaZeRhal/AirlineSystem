@@ -56,11 +56,11 @@
 
     <div align="center" class="inputSearch">
         <c:if test="${requestScope.actionNumber != 5}">
-            <c:set var="hidden" value="hidden"/>
+            <c:set var="addHidden" value="hidden"/>
         </c:if>
         <fmt:message var="search" key="flights.list.search"/>
         <input class="searchIn" type="text" id="searchInput" onkeyup="myFunction()"
-               placeholder="${search}" title="" ${hidden}>
+               placeholder="${search}" title="" ${addHidden}>
     </div>
 
     <table class="FlightlistStyle" id="flightList">

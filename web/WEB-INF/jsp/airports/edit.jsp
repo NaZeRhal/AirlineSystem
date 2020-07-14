@@ -11,7 +11,7 @@
 
 <c:if test="${empty requestScope.airport.airportCode}">
     <fmt:message var="title" key="airports.add.title"/>
-    <c:set var="hidden" value="hidden"/>
+    <c:set var="addHidden" value="hidden"/>
 </c:if>
 <c:if test="${!empty requestScope.airport.airportCode}">
     <fmt:message var="title" key="airports.edit.title"/>
@@ -34,7 +34,7 @@
                 <tr>
                     <th><fmt:message key="airports.table.city"/></th>
                     <th><fmt:message key="airports.table.code"/></th>
-                    <th ${hidden}></th>
+                    <th ${addHidden}></th>
                 </tr>
                 </thead>
 
@@ -42,7 +42,7 @@
                 <tr>
                     <td><input type="text" name="city" value="${requestScope.airport.city}" title=""></td>
                     <td><input type="text" name="airportCode" value="${requestScope.airport.airportCode}" title=""></td>
-                    <td ${hidden}>
+                    <td ${addHidden}>
                         <c:url var="deleteUrl" value="/airports/delete.html?language=${language}"/>
                         <button id="deleteButton" formaction="${deleteUrl}" class="deleteButton"
                                 formmethod="post">

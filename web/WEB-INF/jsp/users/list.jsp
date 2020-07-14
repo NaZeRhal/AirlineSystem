@@ -30,7 +30,6 @@
                 <th><fmt:message key="user.table.name"/></th>
                 <th><fmt:message key="user.table.surname"/></th>
                 <th><fmt:message key="user.table.login"/></th>
-                <th><fmt:message key="user.table.password"/></th>
                 <th><fmt:message key="user.table.userType"/></th>
                 <th><fmt:message key="button.edit"/></th>
             </tr>
@@ -41,7 +40,6 @@
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.login}</td>
-                    <td>${user.password}</td>
                     <td>${user.userType.name}</td>
                     <c:url var="editUrl" value="/users/edit.html?language=${language}">
                         <c:param name="userId" value="${user.id}"/>

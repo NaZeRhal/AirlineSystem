@@ -9,12 +9,15 @@
        scope="session"/>
 <fmt:setLocale value="${language}"/>
 
-<c:if test="${empty requestScope.user.login}">
+<c:if test="${empty requestScope.user.id}">
     <fmt:message var="title" key="user.add.title"/>
-    <c:set var="hidden" value="hidden"/>
+    <c:set var="addHidden" value="hidden"/>
+    <c:set var="action" value="add"/>
 </c:if>
-<c:if test="${!empty requestScope.user.login}">
+<c:if test="${!empty requestScope.user.id}">
     <fmt:message var="title" key="user.edit.title"/>
+    <c:set var="editHidden" value="hidden"/>
+    <c:set var="action" value="edit"/>
 </c:if>
 
 <u:html title="${title}">
@@ -26,18 +29,19 @@
         <p class="done"><fmt:message key="${param.goodMessage}"/></p>
     </c:if>
     <div class="tables">
-        <c:url var="editUrl" value="/users/edit.html?language=${language}"/>
+        <c:url var="editUrl" value="/users/edit.html?language=${language}&action=${action}"/>
         <form action="${editUrl}" method="post">
             <input type="hidden" name="userId" value="${requestScope.user.id}"/>
+<%--            <input type="hidden" name="password" value="${requestScope.user.password}"/>--%>
             <table class="editStyle">
                 <thead>
                 <tr>
                     <th><fmt:message key="user.table.name"/></th>
                     <th><fmt:message key="user.table.surname"/></th>
                     <th><fmt:message key="user.table.login"/></th>
-                    <th><fmt:message key="user.table.password"/></th>
+                    <th ${editHidden}><fmt:message key="user.table.password"/></th>
                     <th><fmt:message key="user.table.userType"/></th>
-                    <th ${hidden}></th>
+                    <th ${addHidden}></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +51,7 @@
                     <td><input type="text" name="lastName" title="" value="${requestScope.user.lastName}" required/>
                     </td>
                     <td><input type="text" name="login" title="" value="${requestScope.user.login}" required/></td>
-                    <td><input type="text" name="password" title="" value="${requestScope.user.password}" required/>
+                    <td ${editHidden}><input type="text" name="password" title="" value="${requestScope.user.password}" required/>
                     </td>
                     <td><select name=userTypeId title="">
                         <c:forEach var="userType" items="${requestScope.userTypes}">
@@ -62,7 +66,7 @@
                             <option value="${userType.id}" ${selected}>${userType.name}</option>
                         </c:forEach>
                     </select></td>
-                    <td ${hidden}>
+                    <td ${addHidden}>
                         <c:url var="deleteUrl" value="/users/delete.html?language=${language}"/>
                         <button class="deleteButton" formaction="${deleteUrl}" title="" formmethod="post">
                             <i class="fa fa-trash" aria-hidden="true"></i>

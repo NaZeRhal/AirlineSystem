@@ -11,7 +11,7 @@
 <fmt:setLocale value="${language}"/>
 <c:if test="${empty requestScope.flight.flightCode}">
     <fmt:message var="title" key="flights.add.title"/>
-    <c:set var="hidden" value="hidden"/>
+    <c:set var="addHidden" value="hidden"/>
 </c:if>
 <c:if test="${!empty requestScope.flight.flightCode}">
     <fmt:message var="title" key="flights.edit.title"/>
@@ -38,7 +38,7 @@
                     <th><fmt:message key="flights.table.departureTime"/></th>
                     <th><fmt:message key="flights.table.arrivalTime"/></th>
                     <th><fmt:message key="flights.table.flightStatus"/></th>
-                    <th ${hidden}></th>
+                    <th ${addHidden}></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -105,7 +105,7 @@
 
                     <c:url var="deleteUrl" value="/flights/delete.html?language=${language}"/>
                     <%--<c:if test="${not flightCanBeDeleted}"><c:set var="disabled" value="disabled"/></c:if>--%>
-                    <td ${hidden}>
+                    <td ${addHidden}>
                         <button formaction="${deleteUrl}" class="deleteButton" formmethod="post">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>

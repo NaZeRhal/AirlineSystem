@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Logger;
 import max.rzhe.airlines.entity.User;
 import max.rzhe.airlines.service.UserService;
 import max.rzhe.airlines.service.exception.ServiceException;
+import max.rzhe.airlines.util.PasswordUtils;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,9 @@ public class LoginAction implements Action {
             try {
                 User user = userService.findByLogin(login);
                 if (null != user) {
-                    if (user.getPassword().equals(password)) {
+                    String encodedPassword = user.getPassword().split(":")[0];
+                    String salt = user.getPassword().split(":")[1];
+                    if (PasswordUtils.verifyUserPassword(password, encodedPassword, salt)) {
                         HttpSession session = request.getSession();
                         session.setAttribute("currentUser", user);
                         logger.info("{} {}, login='{}', is authorized", user.getFirstName(), user.getLastName(), user.getLogin());
